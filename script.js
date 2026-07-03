@@ -79,6 +79,35 @@ document.addEventListener('DOMContentLoaded', () => {
   handleScrollEffects();
 
   // ==========================================
+  // ACTIVE NAV LINK ON SCROLL
+  // ==========================================
+  const sections = document.querySelectorAll('section[id]');
+  const navLinkItems = document.querySelectorAll('.nav-link');
+
+  const setActiveLink = () => {
+    let currentSection = '';
+    const scrollPosition = window.scrollY + 100;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        currentSection = section.getAttribute('id');
+      }
+    });
+
+    navLinkItems.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + currentSection) {
+        link.classList.add('active');
+      }
+    });
+  };
+
+  window.addEventListener('scroll', setActiveLink);
+  setActiveLink();
+
+  // ==========================================
   // SMOOTH SCROLL WITH HEADER OFFSET
   // ==========================================
   const allLinks = document.querySelectorAll('a[href^="#"]');
