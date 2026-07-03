@@ -510,6 +510,10 @@ section {
   width: 100%;
 }
 
+.nav-link.active::after {
+  width: 100%;
+}
+
 .header-actions {
   display: flex;
   align-items: center;
